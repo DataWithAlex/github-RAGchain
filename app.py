@@ -9,7 +9,7 @@ from langchain.document_loaders.parsers import LanguageParser
 from langchain.text_splitter import RecursiveCharacterTextSplitter, Language
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationSummaryMemory
-import config
+# import config
 
 # Define the path where you want to clone the repository
 repo_path = "loaded-repo"
