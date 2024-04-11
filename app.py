@@ -20,7 +20,8 @@ os.environ['GIT_LFS_SKIP_SMUDGE'] = '1'
 
 import os
 
-OPEN_AI_KEY = os.environ.get('OPENAI_API_KEY')
+# Access your secrets securely using st.secrets
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
 
 # Initialize a placeholder for qa in the session state if not already present
@@ -49,10 +50,10 @@ def clone_and_process_repository(repo_url):
     return texts
 
 def initialize_conversational_ai(texts):
-    embeddings = OpenAIEmbeddings(openai_api_key=OPEN_AI_KEY)
+    embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
     db = Chroma.from_documents(texts, embeddings)
     retriever = db.as_retriever(search_type="mmr", search_kwargs={"k": 8})
-    llm = ChatOpenAI(model_name="gpt-4-turbo-preview", openai_api_key=OPEN_AI_KEY)
+    llm = ChatOpenAI(model_name="gpt-4-turbo-preview", openai_api_key=OPENAI_API_KEY)
     memory = ConversationSummaryMemory(llm=llm, memory_key="chat_history", return_messages=True)
     return ConversationalRetrievalChain.from_llm(llm, retriever=retriever, memory=memory)
 
