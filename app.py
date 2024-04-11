@@ -16,7 +16,12 @@ repo_path = "loaded-repo"
 os.environ['GIT_LFS_SKIP_SMUDGE'] = '1'
 
 #OPEN_AI_KEY = config.OPEN_AI_KEY
+#OPEN_AI_KEY = os.environ.get('OPENAI_API_KEY')
+
+import os
+
 OPEN_AI_KEY = os.environ.get('OPENAI_API_KEY')
+
 
 # Initialize a placeholder for qa in the session state if not already present
 if 'qa' not in st.session_state:
