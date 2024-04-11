@@ -10,6 +10,9 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter, Language
 from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationSummaryMemory
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 # import config
 
 # Define the path where you want to clone the repository
